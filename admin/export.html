@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CSVエクスポート | UNITE Friend Challenge</title>
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body class="admin-body no-tabbar">
+
+  <header class="admin-header">
+    <div class="admin-header-inner">
+      <div class="brand" style="font-size:0.9rem;"><span class="brand-dot"></span>UNITE Friend Challenge <span style="opacity:.6; font-weight:400;">/ 管理画面</span></div>
+      <nav class="admin-nav">
+        <a href="index.html">参加者</a>
+        <a href="groups.html">グループ</a>
+        <a href="export.html" class="active">エクスポート</a>
+        <a href="../index.html">アプリを見る →</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-shell section" style="max-width:640px;">
+    <h2 style="font-size:1.1rem;">CSVエクスポート</h2>
+    <p class="small muted" style="margin-top:6px;">
+      祈っている友達の名前は含まれません。Discordでのチャンネル作成・招待作業にそのまま使えます。
+    </p>
+
+    <div class="card" style="margin-top:20px;">
+      <h3 style="font-size:0.95rem;">参加者一覧</h3>
+      <p class="small muted" style="margin-top:6px;" id="countParticipants">0 人</p>
+      <button class="btn btn-primary" style="margin-top:14px;" id="exportParticipantsBtn" type="button">参加者CSVをダウンロード</button>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:0.95rem;">グループ一覧</h3>
+      <p class="small muted" style="margin-top:6px;" id="countGroups">0 グループ</p>
+      <button class="btn btn-primary" style="margin-top:14px;" id="exportGroupsBtn" type="button">グループCSVをダウンロード</button>
+    </div>
+
+    <div class="notice-box" style="margin-top:20px;">
+      Discord連携（β）：現時点ではDiscord Botとの自動連携は行っていません。
+      このCSVを使って、管理者がDiscord上で手動でチャンネルを作成し、Discord IDをもとにメンバーを招待してください。
+      将来的にはBotによるチャンネル自動作成・招待・ロール付与・Welcome Message投稿に拡張できる構造にしています。
+    </div>
+  </main>
+
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/admin-export.js"></script>
+</body>
+</html>

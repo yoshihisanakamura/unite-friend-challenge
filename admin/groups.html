@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>グループ管理 | UNITE Friend Challenge</title>
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body class="admin-body no-tabbar">
+
+  <header class="admin-header">
+    <div class="admin-header-inner">
+      <div class="brand" style="font-size:0.9rem;"><span class="brand-dot"></span>UNITE Friend Challenge <span style="opacity:.6; font-weight:400;">/ 管理画面</span></div>
+      <nav class="admin-nav">
+        <a href="index.html">参加者</a>
+        <a href="groups.html" class="active">グループ</a>
+        <a href="export.html">エクスポート</a>
+        <a href="../index.html">アプリを見る →</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-shell section">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
+      <div>
+        <h2 style="font-size:1.1rem;">グループ管理</h2>
+        <p class="small muted" style="margin-top:4px;">
+          男女を分け、年齢が近く、Mission Typeがなるべく混ざるように3〜4人のグループを自動生成します。
+        </p>
+      </div>
+      <button class="btn btn-accent btn-sm" id="generateBtn" type="button">グループを自動生成</button>
+    </div>
+
+    <div class="notice-box" style="margin-bottom:20px;">
+      自動生成のルール：①男女は分ける ②年齢が近い人同士にする ③1グループ3〜4人 ④Mission Typeが偏らないようにする
+      ⑤同じ教会だけに偏らないようにする。生成後は下の「▾」から手動で移動できます。
+    </div>
+
+    <div class="group-card-grid" id="groupGrid"></div>
+
+    <div class="section">
+      <h2 style="font-size:1rem;">未所属の参加者</h2>
+      <div class="card" id="ungroupedBox"></div>
+    </div>
+  </main>
+
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/admin-groups.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Local Claude Code settings
+.claude/
+
+# Unrelated local projects
+calm-check/
+church-login/
+
+# OS
+.DS_Store

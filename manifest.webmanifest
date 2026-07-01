@@ -1,0 +1,16 @@
+{
+  "name": "UNITE Friend Challenge",
+  "short_name": "Friend Challenge",
+  "description": "6週間、友達のために祈り、招き、祝おう。一人じゃない、仲間と一緒に。",
+  "lang": "ja",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#151a3a",
+  "icons": [
+    { "src": "assets/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "assets/icons/icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

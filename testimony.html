@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>自分のストーリー | UNITE Friend Challenge</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#151a3a" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+<div class="app-shell">
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="challenge.html" class="topbar-back">← 戻る</a>
+      <div class="brand" style="font-size:0.85rem;">自分のストーリー</div>
+      <span style="width:40px;"></span>
+    </div>
+  </header>
+
+  <main class="section container">
+    <h1 style="font-size:1.35rem;">自分のストーリーを<br/>書いてみよう</h1>
+    <p class="hero-sub">
+      神様との体験（証し）を、自分の言葉で。
+      完璧じゃなくていい。盛らなくていい。ざっくり1〜2文からで大丈夫です。
+    </p>
+
+    <div class="notice-box" style="margin-top:18px;">
+      ここに書いた内容はこの端末にだけ保存され、誰にも送信されません。
+      話したくないことまで書く必要はありません。
+    </div>
+
+    <div class="field" style="margin-top:22px;">
+      <label for="tBefore">① 出会う前 — 神様を知る前の自分は？</label>
+      <textarea id="tBefore" rows="4" placeholder="例：ずっと人と比べて、自分に自信がなかった。"></textarea>
+      <div class="hint">悩み、性格、当時の気持ちなど。暗い話じゃなくてもOK。</div>
+    </div>
+
+    <div class="field">
+      <label for="tMeeting">② きっかけ — どうやって神様と出会った？</label>
+      <textarea id="tMeeting" rows="4" placeholder="例：友達に誘われてユースに行ったとき、話がぜんぶ自分のことみたいに聞こえた。"></textarea>
+      <div class="hint">場所、人、出来事。劇的じゃなくていい。じわじわでもOK。</div>
+    </div>
+
+    <div class="field">
+      <label for="tAfter">③ 変わったこと — 今、何が違う？</label>
+      <textarea id="tAfter" rows="4" placeholder="例：うまくいかない日でも「一人じゃない」と思えるようになった。"></textarea>
+      <div class="hint">全部が解決してなくていい。小さな変化こそリアルに届く。</div>
+    </div>
+
+    <div class="btn-block-group" style="margin-top:8px;">
+      <button type="button" class="btn btn-accent" id="checkBtn">伝わりやすさをチェックする</button>
+      <button type="button" class="btn btn-outline" id="copyBtn">ストーリーをコピーする</button>
+    </div>
+
+    <div id="checkResults" style="margin-top:8px;"></div>
+
+    <div class="section" style="padding-bottom:0;">
+      <div class="verse-box">
+        <p class="verse-text">「来て、見てください。」</p>
+        <p class="verse-ref">ヨハネ4:29 — サマリアの女性も、うまい言葉ではなく体験をそのまま伝えました</p>
+      </div>
+    </div>
+  </main>
+
+  <div id="ufc-tabbar"></div>
+</div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/testimony.js"></script>
+<script src="assets/js/nav.js"></script>
+</body>
+</html>

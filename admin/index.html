@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>管理画面 | UNITE Friend Challenge</title>
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body class="admin-body no-tabbar">
+
+  <header class="admin-header">
+    <div class="admin-header-inner">
+      <div class="brand" style="font-size:0.9rem;"><span class="brand-dot"></span>UNITE Friend Challenge <span style="opacity:.6; font-weight:400;">/ 管理画面</span></div>
+      <nav class="admin-nav">
+        <a href="index.html" class="active">参加者</a>
+        <a href="groups.html">グループ</a>
+        <a href="export.html">エクスポート</a>
+        <a href="../index.html">アプリを見る →</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-shell section">
+    <div class="admin-grid">
+      <div class="stat-card"><div class="stat-num" id="statTotal">0</div><div class="stat-label">登録者数</div></div>
+      <div class="stat-card"><div class="stat-num" id="statDiagnosed">0</div><div class="stat-label">診断完了</div></div>
+      <div class="stat-card"><div class="stat-num" id="statGroups">0</div><div class="stat-label">グループ数</div></div>
+    </div>
+
+    <div class="admin-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px,1fr));">
+      <div class="card">
+        <h3 style="font-size:0.85rem; margin-bottom:12px;">男女比</h3>
+        <div id="genderBars"></div>
+      </div>
+      <div class="card">
+        <h3 style="font-size:0.85rem; margin-bottom:12px;">年代分布</h3>
+        <div id="ageBars"></div>
+      </div>
+      <div class="card">
+        <h3 style="font-size:0.85rem; margin-bottom:12px;">タイプ分布</h3>
+        <div id="typeBars"></div>
+      </div>
+    </div>
+
+    <div class="privacy-note">
+      🔒 祈っている友達の名前は本人だけのものです。この管理画面には表示されません。
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+      <h2 style="font-size:1rem;">参加者一覧 <span class="small muted" id="tableCount"></span></h2>
+      <button class="btn btn-ghost btn-sm" id="seedDemoBtn" type="button">＋ デモ参加者を20人追加（テスト用）</button>
+    </div>
+
+    <div class="filter-bar">
+      <select id="filterType"><option value="">タイプ：すべて</option></select>
+      <select id="filterAge"><option value="">年代：すべて</option></select>
+      <select id="filterGender"><option value="">性別：すべて</option></select>
+      <select id="filterChurch"><option value="">教会：すべて</option></select>
+    </div>
+
+    <div class="table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>名前</th><th>ニックネーム</th><th>年齢</th><th>年代</th><th>性別</th>
+            <th>教会</th><th>メール</th><th>Discord ID</th><th>Mission Type</th><th>登録日</th><th>グループ</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </main>
+
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/admin.js"></script>
+</body>
+</html>

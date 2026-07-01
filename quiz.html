@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ミッション診断 | UNITE Friend Challenge</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#151a3a" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="no-tabbar">
+<div class="app-shell">
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <span id="quizBack" class="topbar-back" style="cursor:pointer;">← 前へ</span>
+      <div class="brand" style="font-size:0.85rem;">Mission Type診断</div>
+      <span style="width:40px;"></span>
+    </div>
+  </header>
+
+  <main class="section container">
+    <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar" style="width:0%"></div></div>
+    <div class="quiz-q-num" id="quizStep">質問 1 / 10</div>
+    <div class="quiz-q-text" id="quizText"></div>
+    <div id="quizOptions"></div>
+    <p class="small muted" style="margin-top:18px;">正解はありません。直感で選んで大丈夫です。</p>
+  </main>
+</div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/quiz.js"></script>
+</body>
+</html>

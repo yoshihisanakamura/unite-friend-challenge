@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>診断結果 | UNITE Friend Challenge</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#151a3a" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="no-tabbar">
+<div class="app-shell">
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <span style="width:40px;"></span>
+      <div class="brand" style="font-size:0.85rem;">診断結果</div>
+      <span style="width:40px;"></span>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="result-hero">
+      <p class="small muted">あなたのMission Typeは...</p>
+      <div class="result-char-wrap" id="charFrame"></div>
+      <div class="result-type-name" id="typeLabel"></div>
+      <div class="result-type-jp" id="typeJp"></div>
+      <p class="result-catch" id="typeCatch"></p>
+    </div>
+
+    <div class="card">
+      <p class="small" id="typeDesc"></p>
+    </div>
+
+    <div class="section">
+      <h2 style="font-size:1.05rem;">あなたの強み</h2>
+      <div class="card">
+        <ul class="strength-list" id="strengthList"></ul>
+      </div>
+    </div>
+
+    <div class="section" style="padding-top:0;">
+      <h2 style="font-size:1.05rem;">気をつけること</h2>
+      <div class="card">
+        <ul class="caution-list" id="cautionList"></ul>
+        <p class="small muted" style="margin-top:10px;">神様は、あなたの一歩も、相手のペースも大切にしてくださいます。</p>
+      </div>
+    </div>
+
+    <div class="section" style="padding-top:0;">
+      <h2 style="font-size:1.05rem;">聖書の中の、あなたに似た人</h2>
+      <div class="card">
+        <p style="font-weight:800;" id="bibleFigure"></p>
+        <p class="small" style="margin-top:8px;" id="bibleFigureDesc"></p>
+      </div>
+    </div>
+
+    <div class="section" style="padding-top:0;">
+      <h2 style="font-size:1.05rem;">今週のチャレンジ</h2>
+      <div class="card card-soft">
+        <p class="small" id="weeklyChallenge" style="font-weight:700;"></p>
+      </div>
+    </div>
+
+    <div class="section" style="padding-top:0;">
+      <div class="verse-box">
+        <p class="verse-text" id="verseText"></p>
+        <p class="verse-ref" id="verseRef"></p>
+      </div>
+    </div>
+
+    <div class="section btn-block-group" style="padding-top:0;">
+      <a href="challenge.html" class="btn btn-accent">6週間チャレンジを始める</a>
+      <a href="group.html" class="btn btn-primary">Discordグループに進む</a>
+      <a href="testimony.html" class="btn btn-outline">自分のストーリーを書いてみる</a>
+      <a href="resources.html" class="btn btn-outline">使える教材を見る</a>
+    </div>
+  </main>
+</div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/characters.js"></script>
+<script src="assets/js/result.js"></script>
+</body>
+</html>

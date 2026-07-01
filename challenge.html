@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>6週間チャレンジ | UNITE Friend Challenge</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#151a3a" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+<div class="app-shell">
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand" style="font-size:0.85rem;">6週間チャレンジ</div>
+      <span class="tag tag-outline" id="typeBadge" style="display:none;"></span>
+    </div>
+  </header>
+
+  <main class="section container">
+    <p class="small muted"><span id="nickname">あなた</span>の歩み</p>
+    <div style="display:flex; align-items:center; gap:10px; margin-top:8px;">
+      <div class="progress-track" style="flex:1;"><div class="progress-fill" id="overallProgressFill" style="width:0%"></div></div>
+      <span class="small" id="overallProgressLabel" style="font-weight:700;">0%</span>
+    </div>
+    <p class="small muted" style="margin-top:10px;">小さな一歩も、神様は用いてくださいます。数字よりも、歩みそのものを大切に。</p>
+
+    <div id="celebrateBox" class="verse-box" style="display:none; margin-top:16px;">
+      <p class="verse-text">6週間、完走しました 🎉<br/>結果がどうであれ、あなたの祈りとひとつひとつの一歩を、神様は見ていてくださいました。</p>
+      <p class="verse-ref">仲間と一緒に、祝おう。Pray. Invite. Celebrate.</p>
+    </div>
+
+    <div class="section" style="padding-bottom:0;">
+      <h2 style="font-size:1rem; margin-bottom:6px;">あなたの祈りリスト</h2>
+      <div class="card card-soft" id="prayerList"></div>
+      <p class="small muted" style="margin-top:8px;">今日、この3人のために短く祈ってみよう。この名前はあなただけが見ることができます。</p>
+    </div>
+
+    <div class="section" id="weekList" style="padding-top:22px;"></div>
+  </main>
+
+  <div id="ufc-tabbar"></div>
+</div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/challenge.js"></script>
+<script src="assets/js/nav.js"></script>
+</body>
+</html>

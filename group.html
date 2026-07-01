@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>グループ | UNITE Friend Challenge</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#151a3a" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+<div class="app-shell">
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand" style="font-size:0.85rem;">グループ</div>
+      <span style="width:40px;"></span>
+    </div>
+  </header>
+
+  <main class="section container">
+
+    <div id="groupEmpty" class="empty-state" style="display:none;">
+      <p style="font-weight:700; color: var(--ink);">グループはまだ発表されていません</p>
+      <p class="small" style="margin-top:8px;">管理者がグループを作成すると、ここに表示されます。もう少し待っていてね。</p>
+    </div>
+
+    <div id="groupContent">
+      <div class="eyebrow" id="groupTag"></div>
+      <h1 style="font-size:1.4rem;" id="groupName"></h1>
+      <p class="hero-sub">同じ想いを持つ仲間です。焦らず、一緒に歩んでいこう。</p>
+
+      <div class="section" style="padding-bottom:0;">
+        <h2 style="font-size:1rem;">メンバー</h2>
+        <div class="card" id="memberList"></div>
+      </div>
+
+      <div class="section" style="padding-bottom:0;">
+        <h2 style="font-size:1rem;">今週のチャレンジ</h2>
+        <div class="card card-soft">
+          <p style="font-weight:700;" id="groupWeekTitle"></p>
+          <p class="small" style="margin-top:6px;" id="groupWeekSummary"></p>
+        </div>
+      </div>
+
+      <div class="section" style="padding-bottom:0;">
+        <h2 style="font-size:1rem;">Discordでつながろう</h2>
+        <div class="card">
+          <p class="small">
+            あなたのグループが決まったら、Discordで同じグループの仲間とつながります。
+            ここでは、毎週のチャレンジ、祈りの励まし、UNITEまでの歩みを分かち合います。
+          </p>
+          <p class="small" style="margin-top:10px;">
+            無理に長文を書く必要はありません。短くても大丈夫です。
+          </p>
+          <div class="card-soft" style="border-radius: var(--radius-sm); padding: 12px; margin-top:10px;">
+            <p class="small">「今日、1人のために祈った」</p>
+            <p class="small" style="margin-top:6px;">「今週、友達をカフェに誘ってみる」</p>
+            <p class="small" style="margin-top:6px;">「ちょっと緊張してるから祈ってほしい」</p>
+          </div>
+          <p class="small muted" style="margin-top:12px;">チャンネル：<strong id="discordChannel">-</strong></p>
+        </div>
+      </div>
+
+      <div class="section" style="padding-top:0;">
+        <div class="verse-box">
+          <p class="verse-text">祈りは、見えないところで働いています。今週も一緒に進もう。</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="ufc-tabbar"></div>
+</div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/group.js"></script>
+<script src="assets/js/nav.js"></script>
+</body>
+</html>
