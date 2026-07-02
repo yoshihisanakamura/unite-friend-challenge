@@ -41,6 +41,7 @@
           <li style="margin-bottom:10px;"><strong>自分のグループチャンネルを探す</strong> — 左のチャンネル一覧から自分のグループ（例：#group-01）を見つけよう。</li>
           <li><strong>短くてOK</strong> — 「今日、1人のために祈った」「ちょっと緊張してるから祈ってほしい」。一言で大丈夫。</li>
         </ol>
+        <a id="discordJoinBtn" href="#" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:16px; display:none;">UNITE Friend ChallengeのDiscordに参加する</a>
       </div>
     </div>
 
@@ -126,6 +127,14 @@
   <div id="ufc-tabbar"></div>
 </div>
 <script src="assets/js/data.js"></script>
+<script src="assets/js/config.js"></script>
 <script src="assets/js/nav.js"></script>
+<script>
+  (function () {
+    var invite = window.UFC && UFC.CONFIG && UFC.CONFIG.discordInvite;
+    var btn = document.getElementById("discordJoinBtn");
+    if (invite && btn) { btn.href = invite; btn.style.display = ""; }
+  })();
+</script>
 </body>
 </html>

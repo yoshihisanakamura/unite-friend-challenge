@@ -19,6 +19,7 @@
   global.UFC = global.UFC || {};
   global.UFC.CONFIG = {
     uniteUrl: "https://unitejp.org/",
+    discordInvite: "https://discord.gg/ShR6svdjj",
     googleForm: {
       // 例: "https://docs.google.com/forms/d/e/1FAIpQL.../formResponse"
       action: "",

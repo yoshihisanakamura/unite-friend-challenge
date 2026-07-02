@@ -45,5 +45,12 @@
     document.getElementById("groupWeekSummary").textContent = week.summary;
 
     document.getElementById("discordChannel").textContent = "#" + group.discordChannelName;
+
+    var invite = window.UFC && UFC.CONFIG && UFC.CONFIG.discordInvite;
+    if (invite) {
+      var joinBtn = document.getElementById("discordJoinBtn");
+      joinBtn.href = invite;
+      joinBtn.style.display = "";
+    }
   });
 })();
