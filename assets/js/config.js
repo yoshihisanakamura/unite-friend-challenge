@@ -21,19 +21,18 @@
     uniteUrl: "https://unitejp.org/",
     discordInvite: "https://discord.gg/ShR6svdjj",
     googleForm: {
-      // 例: "https://docs.google.com/forms/d/e/1FAIpQL.../formResponse"
-      action: "",
+      action: "https://docs.google.com/forms/d/e/1FAIpQLSdhASyeUrCepEwweaaklC59xH7zRsH4_QIPo80UQ2TdXmrLog/formResponse",
       entries: {
-        name: "",        // 例: "entry.1234567890"
-        nickname: "",
-        age: "",
-        ageRange: "",
-        gender: "",
-        church: "",
-        email: "",
-        discordId: "",
-        missionType: "",
-        subMissionType: "",
+        name: "entry.971612802",
+        nickname: "entry.1790356309",
+        age: "entry.1182500104",
+        ageRange: "entry.2037889683",
+        gender: "entry.217518142",
+        church: "entry.1677550446",
+        email: "entry.1931334954",
+        discordId: "entry.1793730769",
+        missionType: "entry.435264063",
+        subMissionType: "entry.1492829823",
       },
     },
   };
