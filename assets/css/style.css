@@ -831,3 +831,11 @@ body:not(.admin-body) main h2 {
 .window-sub { font-size: 0.64rem; font-weight: 700; color: #a84a71; }
 .window { display: flex; flex-direction: column; }
 .window-pane { flex: 1; justify-content: flex-end; }
+@media (prefers-reduced-motion: no-preference) {
+  .char-pop {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: fx-pop .8s cubic-bezier(.3,1.6,.4,1) both;
+  }
+}
+@keyframes fx-pop { from { opacity: 0; transform: translateY(14px) scale(.85); } }

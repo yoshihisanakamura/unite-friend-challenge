@@ -7,7 +7,7 @@
 <meta name="description" content="6週間、友達のために祈り、招き、祝おう。一人じゃない、仲間と一緒に。" />
 <link rel="manifest" href="manifest.webmanifest" />
 <meta name="theme-color" content="#24523c" />
-<link rel="stylesheet" href="assets/css/style.css?v=15" />
+<link rel="stylesheet" href="assets/css/style.css?v=16" />
 </head>
 <body data-accent="yellow">
 <div class="app-shell">
@@ -47,7 +47,7 @@
           <circle cx="50" cy="50" r="49" fill="#f0b53c" stroke="#201d17" stroke-width="2"/>
           <circle cx="50" cy="50" r="26" fill="#faf5ea" stroke="#201d17" stroke-width="2"/>
           <text style="font-family:'Zen Maru Gothic',sans-serif; font-weight:900; font-size:11.5px; letter-spacing:2.5px; fill:#201d17;"><textPath href="#badgeCircle">PRAY・INVITE・CELEBRATE・</textPath></text>
-          <text x="50" y="56" text-anchor="middle" style="font-family:'Zen Maru Gothic',sans-serif; font-weight:900; font-size:16px; fill:#e8552f;">6週</text>
+          <path d="M50 39 l2.6 6.6 7 .6 -5.3 4.7 1.6 6.9 -5.9 -3.7 -5.9 3.7 1.6 -6.9 -5.3 -4.7 7 -.6 z" fill="#e8552f" stroke="#201d17" stroke-width="1.6"/>
         </svg>
         <svg viewBox="0 0 375 205" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <!-- yellow color band -->
@@ -58,31 +58,12 @@
           <path class="draw" style="animation-delay:1.1s" d="M300 34 q7,-8 14,0 q7,-8 14,0" stroke="#201d17" stroke-width="2"/>
           <path class="draw" style="animation-delay:1.25s" d="M330 55 q5,-6 10,0" stroke="#201d17" stroke-width="2"/>
 
-          <!-- Inviter (phone raised, calling a friend) -->
-          <g>
-            <path class="fill-in" style="animation-delay:1.05s" d="M100 96 l28 0 q2 20 1 41 l-11 0 l-3 -26 l-3 26 l-11 0 q-2 -21 -1 -41 z" fill="#e8552f" stroke="#201d17" stroke-width="2"/>
-            <path class="fill-in" style="animation-delay:1.15s" d="M98 72 q14,-7 30,0 l3 24 q-18 6 -36 0 z" fill="#fffdf6" stroke="#201d17" stroke-width="2.5"/>
-            <circle class="draw" cx="112" cy="58" r="12" stroke="#201d17" stroke-width="3" fill="#fffdf6"/>
-            <path class="fill-in" style="animation-delay:.75s" d="M100 54 q8,-13 23,-6 q3,4 0,7 q-12,-6 -23,-1 z" fill="#201d17"/>
-            <path class="draw" style="animation-delay:.45s" d="M126 78 q15,-8 21,-24" stroke="#201d17" stroke-width="3"/>
-            <rect class="fill-in" style="animation-delay:.9s" x="142" y="38" width="9" height="15" rx="2.5" fill="#fffdf6" stroke="#201d17" stroke-width="2.5"/>
-            <path class="draw" style="animation-delay:.55s" d="M100 80 q-9 10 -7 21" stroke="#201d17" stroke-width="3"/>
-            <path class="draw" style="animation-delay:.95s" d="M99 139 l12 0 M119 139 l12 0" stroke="#201d17" stroke-width="6"/>
-            <path class="draw" style="animation-delay:1.3s" d="M154 46 q6 -1 10 3 M156 56 q5 1 8 5" stroke="#201d17" stroke-width="2"/>
-            <path class="draw" style="animation-delay:1.4s" d="M62 152 q8 -3 16 0 M46 163 q7 -3 14 0" stroke="#201d17" stroke-width="2.5"/>
-          </g>
+          <!-- refined characters injected by script below -->
+          <g id="heroCharL" transform="translate(58,42) scale(0.62)"></g>
+          <g id="heroCharR" transform="translate(200,42) scale(0.62)"></g>
 
-          <!-- Friend praying/waving back, standing on the band -->
-          <g>
-            <path class="fill-in" style="animation-delay:1.15s" d="M258 96 q14,-7 26,0 q5 22 3 44 l-31 0 q-2 -22 2 -44 z" fill="#fffdf6" stroke="#201d17" stroke-width="2.5"/>
-            <circle class="draw" cx="271" cy="62" r="12" stroke="#201d17" stroke-width="3" fill="#fffdf6"/>
-            <path class="fill-in" style="animation-delay:.8s" d="M259 60 q6,-13 22,-7 q4 4 1 8 q-11,-7 -23,-1 z" fill="#201d17"/>
-            <path class="draw" style="animation-delay:.55s" d="M262 100 q-8 8 -8 18 M280 100 q8 8 8 18" stroke="#201d17" stroke-width="3"/>
-            <path class="draw" style="animation-delay:.7s" d="M254 118 q17 8 34 0" stroke="#201d17" stroke-width="2.5"/>
-            <path class="draw" style="animation-delay:.9s" d="M263 140 l0 14 M279 140 l0 14" stroke="#201d17" stroke-width="3"/>
-            <path class="draw" style="animation-delay:1s" d="M258 155 l10 0 M274 155 l10 0" stroke="#201d17" stroke-width="6"/>
-            <path class="fill-in" style="animation-delay:1.35s" d="M290 44 a6.5 6.5 0 0 1 13 0 q0 7 -6.5 12 q-6.5 -5 -6.5 -12 z" fill="#ef9ebc" stroke="#201d17" stroke-width="2"/>
-          </g>
+          <path class="fill-in" style="animation-delay:1.2s" d="M181 66 a6.5 6.5 0 0 1 13 0 q0 7 -6.5 12 q-6.5 -5 -6.5 -12 z" fill="#ef9ebc" stroke="#201d17" stroke-width="2"/>
+          <path class="draw" style="animation-delay:1.35s" d="M46 158 q8 -3 16 0 M32 168 q7 -3 14 0" stroke="#201d17" stroke-width="2.5"/>
 
           <!-- tiny flower on band -->
           <g class="fill-in" style="animation-delay:1.45s">
@@ -170,12 +151,18 @@
 
   <div id="ufc-tabbar"></div>
 </div>
-<script src="assets/js/data.js"></script>
-<script src="assets/js/characters.js"></script>
-<script src="assets/js/nav.js"></script>
-<script src="assets/js/fx.js"></script>
+<script src="assets/js/data.js?v=16"></script>
+<script src="assets/js/characters.js?v=16"></script>
+<script src="assets/js/nav.js?v=16"></script>
+<script src="assets/js/fx.js?v=16"></script>
 <script>
   (function () {
+    var L = document.getElementById("heroCharL");
+    var R = document.getElementById("heroCharR");
+    if (L && R && window.UFC && UFC.Characters.renderInner) {
+      L.innerHTML = '<g class="char-pop" style="animation-delay:.25s">' + UFC.Characters.renderInner("Bridge") + "</g>";
+      R.innerHTML = '<g class="char-pop" style="animation-delay:.45s">' + UFC.Characters.renderInner("Prayer") + "</g>";
+    }
     var grid = document.getElementById("typeWindows");
     if (!grid || !window.UFC || !UFC.Characters) return;
     grid.innerHTML = UFC.TYPE_ORDER.map(function (t) {
