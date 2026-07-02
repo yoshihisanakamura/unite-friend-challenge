@@ -1,0 +1,26 @@
+# UNITE Friend Challenge — Apache 設定（さくらのレンタルサーバー向け）
+
+# 文字コード（UTF-8）
+AddDefaultCharset UTF-8
+
+# PWA マニフェストのMIMEタイプ
+AddType application/manifest+json .webmanifest
+AddType image/svg+xml .svg
+
+<IfModule mod_headers.c>
+  # 静的アセットは1週間キャッシュ
+  <FilesMatch "\.(css|js|jpe?g|png|svg|webp|woff2?)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+
+  # HTML は毎回確認（内容更新を早く反映）
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+
+  # Service Worker は絶対にキャッシュしない（アプリ更新を確実に配信）
+  # ※ 上の js ルールより後に書くことで、こちらが優先されます
+  <FilesMatch "sw\.js$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+</IfModule>

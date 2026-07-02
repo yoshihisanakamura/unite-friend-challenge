@@ -1,0 +1,12 @@
+# 管理画面のBasic認証（さくらのレンタルサーバー向け）
+#
+# ↓ AuthUserFile のパスは「絶対パス」で指定する必要があります。
+#   さくらの場合、形式は次の通り（"ユーザー名" を自分のアカウント名に置き換え）:
+#     /home/ユーザー名/www/friend-challenge/admin/.htpasswd
+#   ※ サブフォルダ名を friend-challenge 以外にした場合はそこも合わせて変更。
+#   ※ 正しいパスはさくらのコントロールパネル「サーバー情報」で確認できます。
+
+AuthType Basic
+AuthName "UNITE Friend Challenge Admin"
+AuthUserFile /home/ユーザー名/www/friend-challenge/admin/.htpasswd
+Require valid-user

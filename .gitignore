@@ -7,3 +7,7 @@ church-login/
 
 # OS
 .DS_Store
+
+# Basic auth password file (never commit credentials)
+.htpasswd
+admin/.htpasswd
