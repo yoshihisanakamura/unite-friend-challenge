@@ -7,7 +7,7 @@
 <meta name="description" content="6週間、友達のために祈り、招き、祝おう。一人じゃない、仲間と一緒に。" />
 <link rel="manifest" href="manifest.webmanifest" />
 <meta name="theme-color" content="#24523c" />
-<link rel="stylesheet" href="assets/css/style.css?v=13" />
+<link rel="stylesheet" href="assets/css/style.css?v=15" />
 </head>
 <body data-accent="yellow">
 <div class="app-shell">
@@ -126,12 +126,13 @@
     </section>
 
     <section class="section container">
-      <h2 style="font-size:1.15rem;">まず、自分の強みを知ろう</h2>
-      <p class="small muted" style="margin-top:8px;">
-        10の質問に答えると、あなたのGod-given Mission Strength（神様から与えられた宣教の強み）がわかります。
-        Spark / Bridge / Shepherd / Story / Builder / Prayer — どのタイプにも、大切な役割があります。
-      </p>
-      <div style="margin-top:16px;">
+      <div class="window-wall">
+        <p class="ww-eyebrow">MISSION TYPES</p>
+        <h2 class="ww-title">6つのタイプ、6つの窓</h2>
+        <p class="ww-sub">それぞれの場所で、それぞれの強みで、友達のために灯りをともす。10の質問で、あなたのGod-given Mission Strength（神様から与えられた宣教の強み）がわかります。窓をタップしてみて。</p>
+        <div class="window-grid" id="typeWindows"></div>
+      </div>
+      <div style="margin-top:22px;">
         <a href="start.html" class="btn btn-outline">ミッション診断を受ける</a>
       </div>
     </section>
@@ -173,5 +174,22 @@
 <script src="assets/js/characters.js"></script>
 <script src="assets/js/nav.js"></script>
 <script src="assets/js/fx.js"></script>
+<script>
+  (function () {
+    var grid = document.getElementById("typeWindows");
+    if (!grid || !window.UFC || !UFC.Characters) return;
+    grid.innerHTML = UFC.TYPE_ORDER.map(function (t) {
+      var type = UFC.MISSION_TYPES[t];
+      return (
+        '<a class="window" href="start.html">' +
+        '<div class="window-pane">' +
+        UFC.Characters.render(t) +
+        '<span class="window-name">' + t + "</span>" +
+        '<span class="window-sub">' + type.nameJa + "</span>" +
+        "</div></a>"
+      );
+    }).join("");
+  })();
+</script>
 </body>
 </html>

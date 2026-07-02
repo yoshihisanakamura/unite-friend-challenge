@@ -31,11 +31,16 @@
       .map(function (m) {
         var isMe = m.id === participant.id;
         var type = m.missionType ? UFC.MISSION_TYPES[m.missionType] : null;
+        var art = type && UFC.Characters
+          ? UFC.Characters.render(type.key)
+          : '<div style="font-size:2rem; line-height:1.4;">🙏</div>';
         return (
-          '<div class="group-member-row" style="border-bottom:1px solid var(--gray-line); padding:12px 0;">' +
-          "<span>" + m.nickname + (isMe ? " (あなた)" : "") + "</span>" +
-          (type ? '<span class="tag">' + type.key + "</span>" : '<span class="tag muted">診断前</span>') +
-          "</div>"
+          '<div class="window">' +
+          '<div class="window-pane">' +
+          art +
+          '<span class="window-name">' + m.nickname + (isMe ? " ★" : "") + "</span>" +
+          '<span class="window-sub">' + (type ? type.key : "診断前") + "</span>" +
+          "</div></div>"
         );
       })
       .join("");

@@ -753,3 +753,81 @@ body:not(.admin-body) main h2 {
 }
 .hero-scene { position: relative; }
 .hero-scene svg.spin-badge { width: 92px; height: 92px; }
+
+/* ---------- window wall (from the poster reference) ---------- */
+.window-wall {
+  background: var(--green-deep);
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 24px 18px 26px;
+}
+.window-wall h2, .window-wall .ww-title {
+  background-image: none !important;
+  color: var(--cream);
+  font-size: 1.15rem;
+}
+.ww-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: var(--yellow);
+  margin-bottom: 6px;
+}
+.ww-sub { margin-top: 8px; font-size: 0.8rem; color: rgba(250,245,234,0.75); }
+.window-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 16px;
+  margin-top: 18px;
+}
+.window {
+  display: block;
+  position: relative;
+  background: var(--paper);
+  border: 2.5px solid var(--ink);
+  border-radius: 64px 64px 10px 10px;
+  padding: 7px;
+  margin-bottom: 8px; /* room for the sill */
+  box-shadow: 3px 4px 0 rgba(15, 32, 24, 0.55);
+  transition: transform .3s cubic-bezier(.3,1.6,.4,1);
+}
+.window:hover { transform: translateY(-4px) rotate(-0.6deg); }
+.window::after { /* sill */
+  content: "";
+  position: absolute;
+  left: -9px; right: -9px; bottom: -10px;
+  height: 9px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+}
+.window-pane {
+  background: #f8dbe7;
+  border: 2px solid var(--ink);
+  border-radius: 56px 56px 6px 6px;
+  padding: 14px 6px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-height: 128px;
+}
+.window-pane svg { width: 72%; height: auto; }
+.window-name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.78rem;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  padding: 1px 11px;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.window-sub { font-size: 0.64rem; font-weight: 700; color: #a84a71; }
+.window { display: flex; flex-direction: column; }
+.window-pane { flex: 1; justify-content: flex-end; }
