@@ -641,3 +641,115 @@ table.admin-table tr:last-child td { border-bottom: none; }
   body:not(.admin-body) { display: flex; justify-content: center; background: #efe7d3; }
   body:not(.admin-body) > .app-shell { background: var(--cream); min-height: 100vh; width: 480px; box-shadow: var(--shadow-soft); }
 }
+
+/* ==========================================================================
+   Rebrand layer — one accent color per page, editorial motion (2026)
+   ========================================================================== */
+
+/* ---------- per-page accent (set via <body data-accent="...">) ---------- */
+body {
+  --accent: var(--yellow);
+  --accent-deep: #8a610d;
+  --accent-marker: rgba(240, 181, 60, 0.55);
+  --accent-soft: #f8ecc9;
+}
+body[data-accent="green"] { --accent: var(--green); --accent-deep: var(--green-deep); --accent-marker: rgba(47,107,79,.28); --accent-soft: #dbe7d8; }
+body[data-accent="tomato"] { --accent: var(--tomato); --accent-deep: #a33517; --accent-marker: rgba(232,85,47,.30); --accent-soft: #f8dcd0; }
+body[data-accent="pink"] { --accent: var(--pink); --accent-deep: #a84a71; --accent-marker: rgba(239,158,188,.5); --accent-soft: #fadfe9; }
+body[data-accent="sage"] { --accent: var(--sage); --accent-deep: #4c614a; --accent-marker: rgba(143,169,138,.45); --accent-soft: #e2e9df; }
+
+body:not(.admin-body) main h2 {
+  background-image: linear-gradient(transparent 64%, var(--accent-marker) 64%, var(--accent-marker) 92%, transparent 92%);
+}
+.eyebrow { color: var(--accent-deep); }
+.brand-dot { background: var(--accent); }
+.tabbar a.active::after { background: var(--accent); }
+.quiz-option.selected { background: var(--accent-soft); }
+.quiz-option.selected .quiz-option-letter { background: var(--accent); border-color: var(--ink); color: var(--ink); }
+
+/* ---------- page-to-page morph (View Transitions API, MPA) ---------- */
+@view-transition { navigation: auto; }
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) { animation: fx-vt-out .16s ease both; }
+  ::view-transition-new(root) { animation: fx-vt-in .3s cubic-bezier(.3,1.25,.4,1) both; }
+}
+@keyframes fx-vt-out { to { opacity: 0; transform: translateY(8px); } }
+@keyframes fx-vt-in { from { opacity: 0; transform: translateY(12px); } }
+
+/* ---------- marquee band ---------- */
+.marquee {
+  overflow: hidden;
+  background: var(--paper);
+  border-bottom: 2px solid var(--ink);
+  user-select: none;
+}
+.marquee-track {
+  display: flex;
+  gap: 34px;
+  width: max-content;
+  padding: 9px 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+  animation: fx-marquee 22s linear infinite;
+}
+.marquee-track span { display: inline-flex; align-items: center; gap: 34px; }
+.marquee-track .mq-dot { color: var(--accent-deep); }
+@keyframes fx-marquee { to { transform: translateX(-50%); } }
+
+/* ---------- rotating sticker badge ---------- */
+.spin-badge {
+  position: absolute;
+  width: 92px; height: 92px;
+  animation: fx-spin 16s linear infinite;
+  filter: drop-shadow(2px 2px 0 rgba(32,29,23,.7));
+}
+@keyframes fx-spin { to { transform: rotate(360deg); } }
+
+/* ---------- hero scene: characters on a color band ---------- */
+.hero2 { position: relative; padding-top: 26px; }
+.hero-scene { margin-top: 6px; }
+.hero-scene svg { width: 100%; height: auto; display: block; }
+
+/* hand-drawing line animation */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-scene .draw {
+    stroke-dasharray: 620;
+    stroke-dashoffset: 620;
+    animation: fx-draw 1.4s cubic-bezier(.5,0,.3,1) forwards;
+  }
+  .hero-scene .fill-in { opacity: 0; animation: fx-fadein .55s ease forwards; }
+}
+@keyframes fx-draw { to { stroke-dashoffset: 0; } }
+@keyframes fx-fadein { to { opacity: 1; } }
+
+/* tilted poster (the tufted logo) */
+.poster-card {
+  transform: rotate(-1.6deg);
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-lg);
+  box-shadow: 6px 6px 0 rgba(32,29,23,.9);
+  overflow: hidden;
+  transition: transform .5s cubic-bezier(.3,1.6,.4,1);
+}
+.poster-card:hover { transform: rotate(0.4deg) scale(1.015); }
+.poster-card img { display: block; width: 100%; }
+
+/* ---------- scroll-driven parallax (2026: pure CSS scroll timeline) ---------- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .fx-parallax {
+      animation: fx-par linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+@keyframes fx-par {
+  from { transform: translateY(22px) rotate(-2deg); }
+  to { transform: translateY(-22px) rotate(3deg); }
+}
+.hero-scene { position: relative; }
+.hero-scene svg.spin-badge { width: 92px; height: 92px; }
