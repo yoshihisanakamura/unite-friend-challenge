@@ -66,6 +66,7 @@
         checklistHTML +
         '<p class="small" style="margin-top:14px; font-weight:700;">' + w.encouragement + "</p>" +
         (w.week === 4 ? '<a href="testimony.html" class="btn btn-ghost btn-sm" style="margin-top:12px;">自分のストーリーを書いてみる →</a>' : "") +
+        (w.week === 6 ? '<a href="https://unitejp.org/" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" style="margin-top:12px;">UNITE公式サイトで開催情報を見る →</a>' : "") +
         "</div>" +
         "</div>"
       );

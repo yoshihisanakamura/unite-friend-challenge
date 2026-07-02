@@ -46,6 +46,27 @@
       🔒 祈っている友達の名前は本人だけのものです。この管理画面には表示されません。
     </div>
 
+    <div class="card" style="margin-bottom:20px;">
+      <h3 style="font-size:0.95rem;">Googleフォーム連携 — 登録データの取り込み</h3>
+      <p class="small muted" style="margin-top:8px;">
+        参加者の登録内容と診断結果は、Googleフォームへ自動送信されます（<code>assets/js/config.js</code> で設定）。
+        フォームの回答スプレッドシートから「ファイル → ダウンロード → CSV」で保存し、ここで取り込んでください。
+      </p>
+      <div style="margin-top:12px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+        <input type="file" id="csvImportInput" accept=".csv,text/csv" style="font-size:0.82rem;" />
+        <span class="small" id="importResult" style="font-weight:700;"></span>
+      </div>
+      <details style="margin-top:12px;">
+        <summary class="small" style="cursor:pointer; font-weight:700;">セットアップ手順（初回のみ）</summary>
+        <ol class="small muted" style="margin:10px 0 0; padding-left:18px;">
+          <li style="margin-bottom:6px;">Googleフォームを作成し、記述式の質問を10個追加：名前 / ニックネーム / 年齢 / 年代 / 性別 / 所属教会 / メールアドレス / Discord ID / Mission Type / サブタイプ</li>
+          <li style="margin-bottom:6px;">フォーム右上の「⋮ → 事前入力したリンクを取得」で全質問にダミー値を入れてリンクを発行し、URL内の <code>entry.XXXXXXX</code> 番号を控える</li>
+          <li style="margin-bottom:6px;"><code>assets/js/config.js</code> の <code>action</code>（フォームURLの /viewform を /formResponse に置換）と各 <code>entries</code> に貼り付ける</li>
+          <li>以後、参加者が診断を終えるたびに回答が自動でフォームに集まります。CSVの列名は上記の質問名のままでOK</li>
+        </ol>
+      </details>
+    </div>
+
     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
       <h2 style="font-size:1rem;">参加者一覧 <span class="small muted" id="tableCount"></span></h2>
       <button class="btn btn-ghost btn-sm" id="seedDemoBtn" type="button">＋ デモ参加者を20人追加（テスト用）</button>

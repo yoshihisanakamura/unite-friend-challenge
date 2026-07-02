@@ -40,5 +40,7 @@
     document.getElementById("weeklyChallenge").textContent = type.weeklyChallenge;
     document.getElementById("verseText").textContent = "「" + type.verseText + "」";
     document.getElementById("verseRef").textContent = type.verseRef;
+
+    if (UFC.submitToGoogleForm) UFC.submitToGoogleForm(participant);
   });
 })();

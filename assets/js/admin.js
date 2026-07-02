@@ -188,6 +188,125 @@
     renderTable();
   }
 
+  // ---- Google Form CSV import -------------------------------------------
+  function parseCSV(text) {
+    var rows = [], row = [], cur = "", inQ = false;
+    text = text.replace(/^﻿/, "");
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
+      if (inQ) {
+        if (c === '"') {
+          if (text[i + 1] === '"') { cur += '"'; i++; } else inQ = false;
+        } else cur += c;
+      } else if (c === '"') inQ = true;
+      else if (c === ",") { row.push(cur); cur = ""; }
+      else if (c === "\n" || c === "\r") {
+        if (c === "\r" && text[i + 1] === "\n") i++;
+        row.push(cur); cur = "";
+        if (row.length > 1 || row[0] !== "") rows.push(row);
+        row = [];
+      } else cur += c;
+    }
+    if (cur !== "" || row.length) { row.push(cur); rows.push(row); }
+    return rows;
+  }
+
+  function findCol(headers, keywords, exclude) {
+    for (var i = 0; i < headers.length; i++) {
+      var h = headers[i].toLowerCase();
+      if (exclude && exclude.some(function (x) { return h.indexOf(x) !== -1; })) continue;
+      if (keywords.some(function (k) { return h.indexOf(k) !== -1; })) return i;
+    }
+    return -1;
+  }
+
+  function normalizeType(value) {
+    if (!value) return null;
+    var v = value.trim().toLowerCase();
+    for (var i = 0; i < UFC.TYPE_ORDER.length; i++) {
+      if (UFC.TYPE_ORDER[i].toLowerCase() === v) return UFC.TYPE_ORDER[i];
+    }
+    return null;
+  }
+
+  function importCSV(text) {
+    var rows = parseCSV(text);
+    if (rows.length < 2) return { added: 0, updated: 0, skipped: 0, error: "データ行がありません" };
+    var headers = rows[0];
+    var col = {
+      timestamp: findCol(headers, ["タイムスタンプ", "timestamp"]),
+      name: findCol(headers, ["名前", "氏名"], ["ニックネーム", "友達"]),
+      nickname: findCol(headers, ["ニックネーム"]),
+      age: findCol(headers, ["年齢"]),
+      ageRange: findCol(headers, ["年代"]),
+      gender: findCol(headers, ["性別"]),
+      church: findCol(headers, ["教会"]),
+      email: findCol(headers, ["メール", "email"]),
+      discordId: findCol(headers, ["discord"]),
+      missionType: findCol(headers, ["mission", "タイプ"], ["サブ"]),
+      subMissionType: findCol(headers, ["サブ"]),
+    };
+    if (col.email === -1 && col.name === -1) {
+      return { added: 0, updated: 0, skipped: 0, error: "「名前」または「メールアドレス」列が見つかりません" };
+    }
+
+    var list = UFC.getParticipants();
+    var added = 0, updated = 0, skipped = 0;
+    function cell(row, idx) { return idx === -1 ? "" : (row[idx] || "").trim(); }
+
+    rows.slice(1).forEach(function (row) {
+      var email = cell(row, col.email).toLowerCase();
+      var name = cell(row, col.name);
+      if (!email && !name) { skipped++; return; }
+
+      var patch = {
+        name: name,
+        nickname: cell(row, col.nickname) || name,
+        age: Number(cell(row, col.age)) || null,
+        ageRange: cell(row, col.ageRange),
+        gender: cell(row, col.gender),
+        church: cell(row, col.church),
+        email: cell(row, col.email),
+        discordId: cell(row, col.discordId),
+        missionType: normalizeType(cell(row, col.missionType)),
+        subMissionType: normalizeType(cell(row, col.subMissionType)),
+      };
+
+      var existing = email
+        ? list.find(function (p) { return (p.email || "").toLowerCase() === email; })
+        : null;
+      if (existing) {
+        Object.keys(patch).forEach(function (k) {
+          if (patch[k] !== null && patch[k] !== "") existing[k] = patch[k];
+        });
+        updated++;
+      } else {
+        var ts = cell(row, col.timestamp);
+        var created = ts && !isNaN(new Date(ts)) ? new Date(ts).toISOString() : new Date().toISOString();
+        list.push(Object.assign({
+          id: UFC.genId("p"),
+          friends: [],
+          scores: null,
+          groupId: null,
+          challengeProgress: UFC.emptyChallengeProgress(),
+          createdAt: created,
+        }, patch));
+        added++;
+      }
+    });
+
+    UFC.saveParticipants(list);
+    return { added: added, updated: updated, skipped: skipped, error: null };
+  }
+
+  function rebuildFilters() {
+    document.getElementById("filterType").innerHTML = '<option value="">タイプ：すべて</option>';
+    document.getElementById("filterAge").innerHTML = '<option value="">年代：すべて</option>';
+    document.getElementById("filterGender").innerHTML = '<option value="">性別：すべて</option>';
+    document.getElementById("filterChurch").innerHTML = '<option value="">教会：すべて</option>';
+    populateFilters(UFC.getParticipants());
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     var list = UFC.getParticipants();
     populateFilters(list);
@@ -199,13 +318,30 @@
 
     document.getElementById("seedDemoBtn").addEventListener("click", function () {
       seedDemoParticipants();
-      var newList = UFC.getParticipants();
-      document.getElementById("filterType").innerHTML = '<option value="">タイプ：すべて</option>';
-      document.getElementById("filterAge").innerHTML = '<option value="">年代：すべて</option>';
-      document.getElementById("filterGender").innerHTML = '<option value="">性別：すべて</option>';
-      document.getElementById("filterChurch").innerHTML = '<option value="">教会：すべて</option>';
-      populateFilters(newList);
+      rebuildFilters();
       refreshAll();
+    });
+
+    document.getElementById("csvImportInput").addEventListener("change", function (e) {
+      var file = e.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function () {
+        var result = importCSV(reader.result);
+        var msg = document.getElementById("importResult");
+        if (result.error) {
+          msg.textContent = "取り込み失敗：" + result.error;
+          msg.style.color = "#b91c1c";
+        } else {
+          msg.textContent = "追加 " + result.added + "人 / 更新 " + result.updated + "人" +
+            (result.skipped ? " / スキップ " + result.skipped + "行" : "");
+          msg.style.color = "";
+          rebuildFilters();
+          refreshAll();
+        }
+        e.target.value = "";
+      };
+      reader.readAsText(file, "utf-8");
     });
   });
 })();
