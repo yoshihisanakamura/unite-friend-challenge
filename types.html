@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Mission Type図鑑 | UNITE Friend Challenge</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#24523c" />
+<link rel="stylesheet" href="assets/css/style.css?v=17" />
+</head>
+<body data-accent="yellow">
+<div class="app-shell">
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="topbar-back">← ホーム</a>
+      <div class="brand" style="font-size:0.85rem;">Mission Type図鑑</div>
+      <span style="width:40px;"></span>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="result-hero">
+      <p class="small muted">Mission Type</p>
+      <div class="result-char-wrap" id="charFrame"></div>
+      <div class="result-type-name" id="typeLabel"></div>
+      <div class="result-type-jp" id="typeJp"></div>
+      <p class="result-catch" id="typeCatch"></p>
+    </div>
+
+    <div class="card">
+      <p class="small" id="typeDesc"></p>
+    </div>
+
+    <div class="section" style="padding-bottom:0;">
+      <h2 style="font-size:1.05rem;">このタイプの強み</h2>
+      <div class="card"><ul class="strength-list" id="strengthList"></ul></div>
+    </div>
+
+    <div class="section" style="padding-bottom:0;">
+      <h2 style="font-size:1.05rem;">気をつけること</h2>
+      <div class="card"><ul class="caution-list" id="cautionList"></ul></div>
+    </div>
+
+    <div class="section" style="padding-bottom:0;">
+      <h2 style="font-size:1.05rem;">聖書の中の、このタイプ</h2>
+      <div class="card">
+        <p style="font-weight:800;" id="bibleFigure"></p>
+        <p class="small" style="margin-top:8px;" id="bibleFigureDesc"></p>
+      </div>
+    </div>
+
+    <div class="section" style="padding-bottom:0;">
+      <h2 style="font-size:1.05rem;">チャレンジの例</h2>
+      <div class="card card-soft"><p class="small" style="font-weight:700;" id="weeklyChallenge"></p></div>
+    </div>
+
+    <div class="section" style="padding-bottom:0;">
+      <div class="verse-box">
+        <p class="verse-text" id="verseText"></p>
+        <p class="verse-ref" id="verseRef"></p>
+      </div>
+    </div>
+
+    <div class="section" style="padding-bottom:0;">
+      <a href="start.html" class="btn btn-accent">診断で自分のタイプを知る</a>
+    </div>
+
+    <div class="section">
+      <div class="window-wall">
+        <p class="ww-eyebrow">OTHER TYPES</p>
+        <h2 class="ww-title">ほかの窓ものぞいてみる</h2>
+        <div class="window-grid" id="otherTypes"></div>
+      </div>
+    </div>
+  </main>
+
+  <div id="ufc-tabbar"></div>
+</div>
+<script src="assets/js/data.js?v=18"></script>
+<script src="assets/js/characters.js?v=17"></script>
+<script src="assets/js/types.js?v=19"></script>
+<script src="assets/js/nav.js?v=17"></script>
+<script src="assets/js/fx.js?v=17"></script>
+</body>
+</html>

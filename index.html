@@ -84,7 +84,7 @@
     </section>
 
     <section class="section container">
-      <h2 style="font-size:1.15rem;">3つのステップ</h2>
+      <h2 style="font-size:1.15rem;">4つのステップ</h2>
       <div class="card">
         <div style="display:flex; gap:14px; align-items:flex-start;">
           <div class="tag" style="background:var(--orange-soft); color:#9a3412;">Pray</div>
@@ -167,7 +167,7 @@
     grid.innerHTML = UFC.TYPE_ORDER.map(function (t) {
       var type = UFC.MISSION_TYPES[t];
       return (
-        '<a class="window" href="start.html">' +
+        '<a class="window" href="types.html?t=' + t + '">' +
         '<div class="window-pane">' +
         UFC.Characters.render(t) +
         '<span class="window-name">' + t + "</span>" +
