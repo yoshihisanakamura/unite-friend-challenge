@@ -778,7 +778,7 @@ body:not(.admin-body) main h2 {
 .ww-sub { margin-top: 8px; font-size: 0.8rem; color: rgba(250,245,234,0.75); }
 .window-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px 16px;
   margin-top: 18px;
 }
