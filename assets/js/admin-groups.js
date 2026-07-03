@@ -1,28 +1,48 @@
 (function () {
   "use strict";
 
-  // 50 warm, interdenominationally-safe group names (light / seeds /
-  // nature / journey motifs). Type names (Spark, Bridge...) are avoided.
-  var GROUP_NAMES = [
-    ["ヒカリ","hikari"],["アサヒ","asahi"],["ヨアケ","yoake"],["ヒダマリ","hidamari"],
-    ["トモシビ","tomoshibi"],["ランタン","lantern"],["キャンドル","candle"],["トウダイ","todai"],
-    ["ホシゾラ","hoshizora"],["スバル","subaru"],["ニジ","niji"],["アケボノ","akebono"],
-    ["オリーブ","olive"],["ブドウ","budou"],["イチジク","ichijiku"],["ザクロ","zakuro"],
-    ["ムギ","mugi"],["コムギ","komugi"],["カラシダネ","karashidane"],["タネ","tane"],
-    ["メブキ","mebuki"],["ワカバ","wakaba"],["アオバ","aoba"],["ツボミ","tsubomi"],
-    ["ヒマワリ","himawari"],["スズカゼ","suzukaze"],["ソヨカゼ","soyokaze"],["ハト","hato"],
-    ["ツバメ","tsubame"],["ヒバリ","hibari"],["ホタル","hotaru"],["イズミ","izumi"],
-    ["セセラギ","seseragi"],["シズク","shizuku"],["オアシス","oasis"],["ミナモ","minamo"],
-    ["ウミベ","umibe"],["ミナト","minato"],["イカリ","ikari"],["コンパス","compass"],
-    ["チズ","chizu"],["ミチシルベ","michishirube"],["カケハシ","kakehashi"],["トビラ","tobira"],
-    ["マド","mado"],["ハチミツ","hachimitsu"],["シオ","shio"],["パン","pan"],
-    ["コハル","koharu"],["ソラ","sora"],
-  ];
+  // Group names are assigned by the group's dominant Mission Type —
+  // each type has its own themed pool (9 names x 6 = 54). Stylish
+  // English words, interdenominationally safe.
+  var TYPE_NAME_POOLS = {
+    Spark:    ["Ember", "Flare", "Lumen", "Daybreak", "Sunrise", "Comet", "Firefly", "Golden Hour", "North Star"],
+    Bridge:   ["Compass", "Harbor", "Atlas", "Meridian", "Ripple", "Lighthouse", "Wavelength", "Caravan", "Crossroads"],
+    Shepherd: ["Haven", "Hearth", "Willow", "Nest", "Fireside", "Shelter", "Meadow", "Homeward", "Gentle Rain"],
+    Story:    ["Echo", "Chapter", "Ink", "Verse", "Chorus", "Melody", "Postcard", "Campfire", "Anthem"],
+    Builder:  ["Keystone", "Cornerstone", "Timber", "Atelier", "Blueprint", "Workshop", "Trellis", "Beehive", "Studio"],
+    Prayer:   ["Vigil", "Stillwater", "Quiet Hour", "Moonrise", "Lantern", "Blue Hour", "Dewfall", "Whisper", "Anchor"],
+  };
 
-  function groupIdentity(counter) {
-    var entry = GROUP_NAMES[counter - 1];
-    if (entry) {
-      return { name: "Team " + entry[0], channel: "team-" + entry[1] };
+  function dominantType(members) {
+    var counts = {};
+    members.forEach(function (m) {
+      if (m.missionType) counts[m.missionType] = (counts[m.missionType] || 0) + 1;
+    });
+    var best = null;
+    UFC.TYPE_ORDER.forEach(function (t) {
+      if (counts[t] && (!best || counts[t] > counts[best])) best = t;
+    });
+    return best;
+  }
+
+  function slugify(name) {
+    return "team-" + name.toLowerCase().replace(/\s+/g, "-");
+  }
+
+  function pickIdentity(members, used, counter) {
+    var dom = dominantType(members);
+    // try the dominant type's pool first, then the others in order
+    var order = dom
+      ? [dom].concat(UFC.TYPE_ORDER.filter(function (t) { return t !== dom; }))
+      : UFC.TYPE_ORDER.slice();
+    for (var i = 0; i < order.length; i++) {
+      var pool = TYPE_NAME_POOLS[order[i]];
+      for (var j = 0; j < pool.length; j++) {
+        if (!used[pool[j]]) {
+          used[pool[j]] = true;
+          return { name: "Team " + pool[j], channel: slugify(pool[j]) };
+        }
+      }
     }
     var n = String(counter).padStart(2, "0");
     return { name: "Group " + n, channel: "group-" + n };
@@ -119,6 +139,7 @@
     });
 
     var allGroups = [];
+    var usedNames = {};
     var counter = 1;
     var BLOCK_SIZE = 12;
 
@@ -131,7 +152,7 @@
         groupedMembers.forEach(function (members) {
           if (!members.length) return;
           var meta = buildGroupMeta(members);
-          var identity = groupIdentity(counter);
+          var identity = pickIdentity(members, usedNames, counter);
           var typeLabels = meta.types.map(function (t) { return t; }).join(" / ") || "診断待ち";
           allGroups.push({
             id: UFC.genId("g"),
