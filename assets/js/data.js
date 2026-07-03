@@ -164,108 +164,65 @@
   // ---------------------------------------------------------------------
   // Quiz (8 questions x 4 options)
   // ---------------------------------------------------------------------
-  var QUIZ_QUESTIONS = [
-    {
-      id: "q1",
-      text: "友達をUNITEに誘うとしたら、あなたに一番近いのは？",
-      options: [
-        { label: "とにかくまず声をかけてみる", type: "Spark" },
-        { label: "共通の友達と一緒に誘う", type: "Bridge" },
-        { label: "まずゆっくり話を聞く", type: "Shepherd" },
-        { label: "自分の経験をシェアする", type: "Story" },
-      ],
-    },
-    {
-      id: "q2",
-      text: "グループの中で自然とやりがちなことは？",
-      options: [
-        { label: "みんなに声をかける", type: "Spark" },
-        { label: "人を紹介する", type: "Bridge" },
-        { label: "落ち込んでいる人に寄り添う", type: "Shepherd" },
-        { label: "予定やタスクを整理する", type: "Builder" },
-      ],
-    },
-    {
-      id: "q3",
-      text: "友達が信仰について質問してきたら？",
-      options: [
-        { label: "自分の言葉で体験を話す", type: "Story" },
-        { label: "一緒に聖書を読んでみる", type: "Shepherd" },
-        { label: "先生やリーダーにつなげる", type: "Bridge" },
-        { label: "まず祈る", type: "Prayer" },
-      ],
-    },
-    {
-      id: "q4",
-      text: "あなたが得意なのは？",
-      options: [
-        { label: "最初の一歩を踏み出す", type: "Spark" },
-        { label: "人と人をつなぐ", type: "Bridge" },
-        { label: "一人を大切にする", type: "Shepherd" },
-        { label: "裏で支える", type: "Prayer" },
-      ],
-    },
-    {
-      id: "q5",
-      text: "6週間のチャレンジで、あなたが一番やりやすそうなのは？",
-      options: [
-        { label: "友達に連絡する", type: "Spark" },
-        { label: "一緒にカフェに行く", type: "Shepherd" },
-        { label: "グループの進捗を整える", type: "Builder" },
-        { label: "祈り続ける", type: "Prayer" },
-      ],
-    },
-    {
-      id: "q6",
-      text: "SNSや会話で、自分の信仰をシェアすることについてどう感じる？",
-      options: [
-        { label: "わりとできる", type: "Story" },
-        { label: "誰かと一緒ならできる", type: "Bridge" },
-        { label: "まず個人的に話したい", type: "Shepherd" },
-        { label: "少し苦手だけど祈りたい", type: "Prayer" },
-      ],
-    },
-    {
-      id: "q7",
-      text: "チームに必要だと思うものは？",
-      options: [
-        { label: "勢い", type: "Spark" },
-        { label: "つながり", type: "Bridge" },
-        { label: "ケア", type: "Shepherd" },
-        { label: "整理", type: "Builder" },
-      ],
-    },
-    {
-      id: "q8",
-      text: "あなたが友達に届けたいものは？",
-      options: [
-        { label: "きっかけ", type: "Spark" },
-        { label: "居場所", type: "Bridge" },
-        { label: "安心", type: "Shepherd" },
-        { label: "希望のストーリー", type: "Story" },
-      ],
-    },
-    {
-      id: "q9",
-      text: "友達のために何かするなら、一番自然にできそうなのは？",
-      options: [
-        { label: "毎日1分でも祈り続ける", type: "Prayer" },
-        { label: "会う日や場所をセッティングする", type: "Builder" },
-        { label: "自分の体験をメッセージで送る", type: "Story" },
-        { label: "まず「最近どう？」と連絡する", type: "Spark" },
-      ],
-    },
-    {
-      id: "q10",
-      text: "UNITE当日、あなたがしていそうなことは？",
-      options: [
-        { label: "集合時間や行き方をみんなに共有している", type: "Builder" },
-        { label: "友達同士を紹介してつなげている", type: "Bridge" },
-        { label: "始まる前に、友達のために静かに祈っている", type: "Prayer" },
-        { label: "自分がどう感じたかを友達に話している", type: "Story" },
-      ],
-    },
+  // 24-item Likert bank (5-point). Item wording follows the revised
+  // specification (evidence-based; no reverse-coded items; church jargon
+  // avoided). Items are interleaved by type so same-scale items are
+  // never adjacent.
+  var LIKERT_LABELS = [
+    "全くあてはまらない",
+    "あまりあてはまらない",
+    "どちらともいえない",
+    "ややあてはまる",
+    "とてもあてはまる",
   ];
+
+  var ITEM_BANK = {
+    Spark: [
+      "初めて会った人に自分から話しかけるのは苦にならない",
+      "新しい環境に入っても、早めに周りの人と話し始める方だ",
+      "気になる人がいたら、きっかけを作って話しかけてみる",
+      "グループの中で、最初に話し出す役になることが多い",
+    ],
+    Bridge: [
+      "友達同士を紹介して、うまくつなげることが多い",
+      "グループに新しく入った人がいると、自然と間を取り持つ",
+      "「あの人とあの人、気が合いそう」と思ったら実際に会わせてみる",
+      "いろいろなタイプの友達グループを、自分がつなぎ役になってまとめている",
+    ],
+    Shepherd: [
+      "悩んでいる人の話をじっくり聞くのが好きだ",
+      "一度仲良くなった人とは、長く付き合い続けることが多い",
+      "誰かが落ち込んでいると、そばにいてあげたくなる",
+      "友達の悩みや近況を、時間が経ってもちゃんと覚えている",
+    ],
+    Story: [
+      "自分が経験したことを話すと、相手に伝わりやすいと言われる",
+      "自分の失敗や苦労した話を、人に話すことに抵抗がない",
+      "何かを説明するとき、自分の実体験を例に出すことが多い",
+      "自分の気持ちの変化を振り返って言葉にするのが得意だ",
+    ],
+    Builder: [
+      "イベントや集まりで、裏方の準備をするのが得意だ",
+      "何かを企画するとき、段取りや持ち物を細かく考えるのが好きだ",
+      "気づいたら周りの手伝いや片付けを率先してやっている",
+      "場の雰囲気より、物事がきちんと回っているかが気になる方だ",
+    ],
+    Prayer: [
+      "大切な人のために、静かに時間を使うことが多い",
+      "誰かのことを心配なとき、その人のために祈ることが多い",
+      "目立たなくても、誰かのために祈り続けることを大事にしている",
+      "何か力になりたいとき、まず祈ることから始める",
+    ],
+  };
+
+  // interleave: S1,B1,Sh1,St1,Bu1,P1, S2,B2,... so no two same-type
+  // items appear consecutively
+  var QUIZ_ITEMS = [];
+  for (var _i = 0; _i < 4; _i++) {
+    TYPE_ORDER.forEach(function (t) {
+      QUIZ_ITEMS.push({ id: t.slice(0, 2) + (_i + 1), type: t, text: ITEM_BANK[t][_i] });
+    });
+  }
 
   // ---------------------------------------------------------------------
   // 6-Week Challenge
@@ -457,39 +414,27 @@
   }
 
   function scoreQuiz(answers) {
-    // answers: { q1: "Spark", q2: "Bridge", ... }
-    // Raw counts are normalized by how often each type appears as an option,
-    // so types with fewer chances to be picked aren't structurally penalized.
-    var scores = {};
-    var appearances = {};
+    // answers: { Sp1: 1..5, Br1: 1..5, ... } (24 Likert responses)
+    // Continuous scoring: per-type mean (1.0-5.0). Primary = highest
+    // mean; secondary shown when the gap is < 1.0; gaps <= 0.3 are
+    // flagged as borderline (both tendencies equally strong).
+    var means = {};
     TYPE_ORDER.forEach(function (t) {
-      scores[t] = 0;
-      appearances[t] = 0;
+      var ids = QUIZ_ITEMS.filter(function (it) { return it.type === t; });
+      var sum = 0;
+      ids.forEach(function (it) { sum += Number(answers[it.id]) || 3; });
+      means[t] = Math.round((sum / ids.length) * 100) / 100;
     });
-    QUIZ_QUESTIONS.forEach(function (q) {
-      q.options.forEach(function (opt) {
-        if (appearances[opt.type] !== undefined) appearances[opt.type] += 1;
-      });
-    });
-    Object.keys(answers).forEach(function (qId) {
-      var t = answers[qId];
-      if (scores[t] !== undefined) scores[t] += 1;
-    });
-    var normalized = {};
-    TYPE_ORDER.forEach(function (t) {
-      normalized[t] = appearances[t] ? scores[t] / appearances[t] : 0;
-    });
-    var sorted = TYPE_ORDER.slice().sort(function (a, b) {
-      if (normalized[b] !== normalized[a]) return normalized[b] - normalized[a];
-      return scores[b] - scores[a];
-    });
+    var sorted = TYPE_ORDER.slice().sort(function (a, b) { return means[b] - means[a]; });
     var top = sorted[0];
     var second = sorted[1];
-    var subType = null;
-    if (scores[second] > 0 && normalized[second] >= normalized[top] * 0.75 && second !== top) {
-      subType = second;
-    }
-    return { scores: scores, missionType: top, subMissionType: subType };
+    var gap = means[top] - means[second];
+    return {
+      scores: means,
+      missionType: top,
+      subMissionType: gap < 1.0 ? second : null,
+      borderline: gap <= 0.3,
+    };
   }
 
   function ageToRangeLabel(range) {
@@ -527,7 +472,8 @@
     KEYS: STORAGE_KEYS,
     MISSION_TYPES: MISSION_TYPES,
     TYPE_ORDER: TYPE_ORDER,
-    QUIZ_QUESTIONS: QUIZ_QUESTIONS,
+    QUIZ_ITEMS: QUIZ_ITEMS,
+    LIKERT_LABELS: LIKERT_LABELS,
     CHALLENGE_WEEKS: CHALLENGE_WEEKS,
     RESOURCES: RESOURCES,
     AGE_RANGES: AGE_RANGES,

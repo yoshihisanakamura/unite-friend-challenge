@@ -26,9 +26,8 @@
     var genders = ["男性", "女性"];
     DEMO_NAMES.forEach(function (pair, i) {
       var answers = {};
-      UFC.QUIZ_QUESTIONS.forEach(function (q) {
-        var opt = q.options[Math.floor(Math.random() * q.options.length)];
-        answers[q.id] = opt.type;
+      UFC.QUIZ_ITEMS.forEach(function (it) {
+        answers[it.id] = 1 + Math.floor(Math.random() * 5);
       });
       var result = UFC.scoreQuiz(answers);
       var ageRange = UFC.AGE_RANGES[Math.floor(Math.random() * UFC.AGE_RANGES.length)];
