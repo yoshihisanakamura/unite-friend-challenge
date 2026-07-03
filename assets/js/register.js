@@ -36,7 +36,7 @@
         age: Number(fd.get("age")),
         ageRange: fd.get("ageRange"),
         gender: gender,
-        church: fd.get("church").trim(),
+        church: fd.get("church").trim() || "探し中",
         email: fd.get("email").trim(),
         discordId: fd.get("discordId").trim(),
         friends: [
