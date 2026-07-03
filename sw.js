@@ -1,5 +1,5 @@
 /* UNITE Friend Challenge — service worker (app-shell offline cache) */
-var CACHE_NAME = "ufc-cache-v21";
+var CACHE_NAME = "ufc-cache-v22";
 var PRECACHE = [
   "./index.html",
   "./testimony.html",

@@ -1,6 +1,33 @@
 (function () {
   "use strict";
 
+  // 50 warm, interdenominationally-safe group names (light / seeds /
+  // nature / journey motifs). Type names (Spark, Bridge...) are avoided.
+  var GROUP_NAMES = [
+    ["ヒカリ","hikari"],["アサヒ","asahi"],["ヨアケ","yoake"],["ヒダマリ","hidamari"],
+    ["トモシビ","tomoshibi"],["ランタン","lantern"],["キャンドル","candle"],["トウダイ","todai"],
+    ["ホシゾラ","hoshizora"],["スバル","subaru"],["ニジ","niji"],["アケボノ","akebono"],
+    ["オリーブ","olive"],["ブドウ","budou"],["イチジク","ichijiku"],["ザクロ","zakuro"],
+    ["ムギ","mugi"],["コムギ","komugi"],["カラシダネ","karashidane"],["タネ","tane"],
+    ["メブキ","mebuki"],["ワカバ","wakaba"],["アオバ","aoba"],["ツボミ","tsubomi"],
+    ["ヒマワリ","himawari"],["スズカゼ","suzukaze"],["ソヨカゼ","soyokaze"],["ハト","hato"],
+    ["ツバメ","tsubame"],["ヒバリ","hibari"],["ホタル","hotaru"],["イズミ","izumi"],
+    ["セセラギ","seseragi"],["シズク","shizuku"],["オアシス","oasis"],["ミナモ","minamo"],
+    ["ウミベ","umibe"],["ミナト","minato"],["イカリ","ikari"],["コンパス","compass"],
+    ["チズ","chizu"],["ミチシルベ","michishirube"],["カケハシ","kakehashi"],["トビラ","tobira"],
+    ["マド","mado"],["ハチミツ","hachimitsu"],["シオ","shio"],["パン","pan"],
+    ["コハル","koharu"],["ソラ","sora"],
+  ];
+
+  function groupIdentity(counter) {
+    var entry = GROUP_NAMES[counter - 1];
+    if (entry) {
+      return { name: "Team " + entry[0], channel: "team-" + entry[1] };
+    }
+    var n = String(counter).padStart(2, "0");
+    return { name: "Group " + n, channel: "group-" + n };
+  }
+
   var GENDER_LABEL = { "男性": "男子", "女性": "女子", "回答しない": "参加者" };
 
   function computeGroupSizes(n) {
@@ -104,17 +131,17 @@
         groupedMembers.forEach(function (members) {
           if (!members.length) return;
           var meta = buildGroupMeta(members);
-          var name = "Group " + String(counter).padStart(2, "0");
+          var identity = groupIdentity(counter);
           var typeLabels = meta.types.map(function (t) { return t; }).join(" / ") || "診断待ち";
           allGroups.push({
             id: UFC.genId("g"),
-            name: name,
+            name: identity.name,
             genderLabel: meta.genderLabel,
             ageLabel: meta.ageLabel,
             types: meta.types,
             typeLabel: typeLabels,
             memberIds: members.map(function (m) { return m.id; }),
-            discordChannelName: "group-" + String(counter).padStart(2, "0"),
+            discordChannelName: identity.channel,
             createdAt: new Date().toISOString(),
           });
           counter += 1;
