@@ -709,7 +709,8 @@ body:not(.admin-body) main h2 {
 @keyframes fx-spin { to { transform: rotate(360deg); } }
 
 /* ---------- hero scene: characters on a color band ---------- */
-.hero2 { position: relative; padding-top: 26px; }
+.hero2 { position: relative; padding-top: 26px; text-align: center; }
+.hero2 .hero-sub { margin-left: auto; margin-right: auto; }
 .hero-scene { margin-top: 6px; }
 .hero-scene svg { width: 100%; height: auto; display: block; }
 
