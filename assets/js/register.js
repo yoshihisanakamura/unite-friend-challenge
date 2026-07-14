@@ -28,6 +28,11 @@
         alert("性別を選択してください。");
         return;
       }
+      var area = fd.get("area");
+      if (!area) {
+        alert("住んでいるエリアを選択してください。");
+        return;
+      }
 
       var participant = {
         id: UFC.genId("p"),
@@ -36,6 +41,7 @@
         age: Number(fd.get("age")),
         ageRange: fd.get("ageRange"),
         gender: gender,
+        area: area,
         church: fd.get("church").trim() || "探し中",
         email: fd.get("email").trim(),
         discordId: fd.get("discordId").trim(),

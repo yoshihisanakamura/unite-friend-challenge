@@ -49,6 +49,24 @@
         <div class="radio-pill-group" id="genderOptions"></div>
       </div>
       <div class="field">
+        <label for="area">住んでいるエリア</label>
+        <select id="area" name="area" required>
+          <option value="" disabled selected>選択してください</option>
+          <option>東京</option>
+          <option>神奈川</option>
+          <option>埼玉</option>
+          <option>千葉</option>
+          <option>北関東(茨城・栃木・群馬)</option>
+          <option>北海道・東北</option>
+          <option>中部・北陸</option>
+          <option>関西</option>
+          <option>中国・四国</option>
+          <option>九州・沖縄</option>
+          <option>海外</option>
+        </select>
+        <div class="hint">近いエリアの仲間と同じグループになりやすくなります。</div>
+      </div>
+      <div class="field">
         <label for="church">所属教会（あれば）</label>
         <input type="text" id="church" name="church" placeholder="例：〇〇教会 / 探し中" />
         <div class="hint">今は教会に行っていない・引っ越しなどで探している途中でも大丈夫。「探し中」と書くか、空欄のままでOKです。</div>
@@ -102,7 +120,7 @@
   </main>
 </div>
 <script src="assets/js/data.js?v=24"></script>
-<script src="assets/js/register.js?v=20"></script>
+<script src="assets/js/register.js?v=21"></script>
 <script src="assets/js/fx.js?v=20"></script>
 </body>
 </html>

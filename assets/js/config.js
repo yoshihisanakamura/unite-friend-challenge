@@ -67,6 +67,8 @@
       body: JSON.stringify({
         discord_name: String(discordName),
         age: age,
+        gender: participant.gender || null,
+        area: participant.area || null,
         primary_type: String(participant.missionType || ""),
         secondary_type: String(participant.subMissionType || ""),
         is_borderline: !!participant.borderline,
