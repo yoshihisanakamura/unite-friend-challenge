@@ -16,7 +16,7 @@
     { href: "index.html", key: "home", label: "ホーム" },
     { href: "quiz.html", key: "quiz", label: "診断" },
     { href: "challenge.html", key: "challenge", label: "チャレンジ" },
-    { href: "resources.html", key: "resources", label: "教材" },
+    { href: "resources.html", key: "resources", label: "リソース" },
     { href: "group.html", key: "group", label: "グループ" },
   ];
 

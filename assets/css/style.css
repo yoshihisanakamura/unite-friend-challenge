@@ -517,13 +517,50 @@ body:not(.admin-body) .card:nth-of-type(odd) { transform: rotate(-0.3deg); }
   color: #8c3415;
 }
 .resource-link {
-  display: inline-block;
-  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 14px;
+  padding: 9px 18px;
+  background: var(--tomato);
+  color: #fff;
   font-size: 0.85rem;
   font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform .13s ease, box-shadow .13s ease;
 }
+.resource-link:active { transform: scale(.97); }
+
+/* Resource icon badge */
+.resource-card .r-head { display: flex; align-items: center; gap: 12px; }
+.r-icon {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 rgba(32, 29, 23, 0.9);
+}
+.r-icon img { width: 100%; height: 100%; object-fit: contain; padding: 5px; }
+.r-icon .r-initial {
+  display: none;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--ink);
+}
+.r-icon.fallback img { display: none; }
+.r-icon.fallback .r-initial { display: block; }
+.r-icon-emoji { font-size: 1.6rem; }
+.resource-card .r-titles { min-width: 0; }
+.resource-card .r-sub { font-size: 0.7rem; color: var(--gray-text); margin-top: 2px; }
 
 /* ---------- Notice / privacy box ---------- */
 .notice-box {
